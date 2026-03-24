@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avah Holdings (Pty) Ltd – Accounting • Tax • Advisory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:   #0f2044;
+      --navy2:  #1a3360;
+      --gold:   #c9a84c;
+      --gold2:  #e8c97a;
+      --white:  #ffffff;
+      --offwhite: #f7f8fc;
+      --gray:   #6b7280;
+      --lightgray: #e8ecf4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 68px;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 36px; height: 44px; }
+
+    .nav-logo-text {
+      display: flex; flex-direction: column;
+    }
+
+    .nav-logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 17px;
+      color: var(--white); letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .nav-logo-sub {
+      font-size: 9px; letter-spacing: 0.18em;
+      color: var(--gold2); font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 12px; letter-spacing: 0.14em; font-weight: 500;
+      text-transform: uppercase; transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--gold2); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 7px 18px;
+      border-radius: 2px;
+      font-weight: 600 !important;
+      letter-spacing: 0.1em !important;
+    }
+
+    .nav-cta:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 100px 5vw 60px;
+    }
+
+    .hero-bg-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-accent {
+      position: absolute; right: -60px; top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold2);
+      font-size: 11px; letter-spacing: 0.2em; font-weight: 600;
+      text-transform: uppercase; padding: 6px 16px;
+      border-radius: 2px; margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 700; line-height: 1.07;
+      color: var(--white); margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      font-style: italic; color: var(--gold2);
+    }
+
+    .hero-desc {
+      font-size: 16px; line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px; margin-bottom: 44px;
+    }
+
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 32px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 14px 32px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      border-radius: 2px; transition: border-color .2s, color .2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover { border-color: var(--gold2); color: var(--gold2); }
+
+    .hero-stat-row {
+      position: absolute; bottom: 48px; left: 5vw; right: 5vw;
+      display: flex; gap: 48px; z-index: 2;
+      padding-top: 32px;
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+
+    .hero-stat { }
+    .hero-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px; font-weight: 700; color: var(--gold2); line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 11px; letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5); text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 96px 5vw; }
+
+    .section-tag {
+      font-size: 11px; letter-spacing: 0.22em; font-weight: 600;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px); font-weight: 700; line-height: 1.1;
+      color: var(--navy); margin-bottom: 20px;
+    }
+
+    .section-title.white { color: var(--white); }
+
+    .section-desc {
+      font-size: 16px; line-height: 1.75; color: var(--gray);
+      max-width: 580px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--offwhite);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+    }
+
+    .about-left { }
+
+    .about-right {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+
+    .value-card {
+      background: var(--white);
+      border-top: 3px solid var(--gold);
+      padding: 24px 20px;
+      border-radius: 2px;
+      box-shadow: 0 2px 16px rgba(15,32,68,0.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .value-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(15,32,68,0.1); }
+
+    .value-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px;
+    }
+
+    .value-card-text {
+      font-size: 13px; line-height: 1.65; color: var(--gray);
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 56px; flex-wrap: wrap; gap: 20px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+      background: var(--lightgray);
+      border: 1px solid var(--lightgray);
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 40px 36px;
+      transition: background .2s;
+      cursor: default;
+    }
+
+    .service-card:hover { background: var(--offwhite); }
+
+    .service-icon {
+      width: 44px; height: 44px; margin-bottom: 20px;
+      background: var(--navy);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .service-icon svg { width: 22px; height: 22px; }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .service-list {
+      list-style: none;
+    }
+
+    .service-list li {
+      font-size: 13.5px; color: var(--gray); line-height: 1.5;
+      padding: 5px 0; border-bottom: 1px solid var(--lightgray);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+
+    .service-list li:last-child { border-bottom: none; }
+
+    .service-list li::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    /* ── WHY US ── */
+    #why {
+      background: var(--navy);
+      position: relative; overflow: hidden;
+    }
+
+    #why::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; margin-top: 56px;
+    }
+
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+
+    .why-item {
+      display: flex; gap: 18px; align-items: flex-start;
+    }
+
+    .why-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px; font-weight: 700; color: rgba(201,168,76,0.25);
+      line-height: 1; min-width: 40px;
+    }
+
+    .why-item-text h4 {
+      font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px;
+    }
+
+    .why-item-text p {
+      font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.6;
+    }
+
+    .why-cta-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 48px 40px;
+    }
+
+    .why-cta-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 700; color: var(--white); margin-bottom: 16px;
+    }
+
+    .why-cta-box p {
+      color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; margin-bottom: 32px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--offwhite); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 56px; align-items: start;
+    }
+
+    .contact-info-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: var(--navy);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 18px; height: 18px; }
+
+    .contact-info-label {
+      font-size: 11px; letter-spacing: 0.15em; font-weight: 600;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+
+    .contact-info-value {
+      font-size: 15px; color: var(--navy); font-weight: 500;
+    }
+
+    .contact-info-value a {
+      color: var(--navy); text-decoration: none;
+    }
+
+    .contact-info-value a:hover { color: var(--gold); }
+
+    .contact-form {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-group label {
+      font-size: 11px; letter-spacing: 0.14em; font-weight: 600;
+      text-transform: uppercase; color: var(--navy);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid var(--lightgray);
+      background: var(--white);
+      padding: 12px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 14px; color: var(--navy);
+      border-radius: 2px; outline: none;
+      transition: border-color .2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--navy);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 48px 5vw 28px;
+      border-top: 2px solid var(--gold);
+    }
+
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 40px; flex-wrap: wrap; gap: 32px;
+    }
+
+    .footer-brand h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 6px;
+    }
+
+    .footer-brand p {
+      font-size: 12px; letter-spacing: 0.15em;
+      color: var(--gold); text-transform: uppercase;
+    }
+
+    .footer-services h4 {
+      font-size: 11px; letter-spacing: 0.18em; font-weight: 600;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    }
+
+    .footer-services ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    .footer-services ul li {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px; color: rgba(255,255,255,0.35);
+    }
+
+    .footer-bbbee {
+      font-size: 11px; letter-spacing: 0.1em; font-weight: 600;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold2); padding: 5px 12px; border-radius: 2px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-stat-row { gap: 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .about-right { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg viewBox="0 0 70 85" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 15 5 L 30 5 L 37 12 L 37 45 Q 37 58 26.25 67 Q 23 69.5 23 69.5 Q 23 69.5 19.75 67 Q 9 58 9 45 L 9 12 Z" fill="#c9a84c"/>
+      <text x="23" y="48" font-size="34" font-family="Georgia,serif" font-weight="bold" fill="#0f2044" text-anchor="middle">A</text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">AVAH HOLDINGS</span>
+      <span class="nav-logo-sub">Accounting · Tax · Advisory</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-badge fade-up">Established 2023 · South Africa</div>
+    <h1 class="hero-title fade-up delay-1">
+      Financial Clarity,<br/><em>Built on Integrity.</em>
+    </h1>
+    <p class="hero-desc fade-up delay-2">
+      Avah Holdings provides expert accounting, tax, payroll, and advisory services — empowering businesses to operate with confidence, remain compliant, and achieve sustainable growth.
+    </p>
+    <div class="hero-btns fade-up delay-3">
+      <a href="#services" class="btn-primary">Explore Our Services</a>
+      <a href="#contact" class="btn-outline">Book a Consultation</a>
+    </div>
+  </div>
+  <div class="hero-stat-row fade-up delay-4">
+    <div class="hero-stat">
+      <div class="hero-stat-num">100%</div>
+      <div class="hero-stat-label">Black Female Owned</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5+</div>
+      <div class="hero-stat-label">Core Services</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">SARS</div>
+      <div class="hero-stat-label">Registered Practitioners</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">B-BBEE</div>
+      <div class="hero-stat-label">Compliant Business</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">Who We Are</div>
+  <h2 class="section-title">Bringing Life & Structure<br/>to Your Business</h2>
+  <p class="section-desc">
+    We are a proudly 100% Black female-owned firm committed to delivering accurate, ethical, and growth-focused financial services tailored to the unique needs of every client.
+  </p>
+
+  <div class="about-grid">
+    <div class="about-left">
+      <div style="margin-bottom:40px;">
+        <div style="font-size:11px;letter-spacing:.2em;font-weight:600;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Our Vision</div>
+        <p style="font-size:15px;line-height:1.8;color:var(--gray);">
+          To be the leading partner that brings life, structure, and integrity to businesses through accurate accounting, responsible compliance, and proactive financial guidance that drives sustainable success.
+        </p>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:.2em;font-weight:600;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Our Mission</div>
+        <p style="font-size:15px;line-height:1.8;color:var(--gray);">
+          We deeply understand each client's business needs, deliver accurate financial services, and ensure full compliance with all regulatory authorities — upholding the highest standards of integrity in everything we do.
+        </p>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="value-card">
+        <div class="value-card-title">Integrity</div>
+        <div class="value-card-text">Honesty and trust form the foundation of every relationship we build.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Accuracy</div>
+        <div class="value-card-text">Precision and thoroughness in all financial work — always.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Transparency</div>
+        <div class="value-card-text">Open, clear communication and full visibility into every process.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Client-Centricity</div>
+        <div class="value-card-text">Tailored solutions that support your growth and long-term success.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Accountability</div>
+        <div class="value-card-text">We deliver on our commitments — consistently and dependably.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Compliance</div>
+        <div class="value-card-text">Guiding clients through legal and regulatory standards with integrity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+    </div>
+    <p style="max-width:360px;font-size:14px;color:var(--gray);line-height:1.7;">
+      Comprehensive financial services designed to keep your business structured, compliant, and growing.
+    </p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- Accounting -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3zm4 4h10M7 9h10M7 13h6"/></svg>
+      </div>
+      <h3 class="service-title">Accounting &amp; Bookkeeping</h3>
+      <ul class="service-list">
+        <li>Monthly bookkeeping</li>
+        <li>VAT capturing and submission</li>
+        <li>Management accounts</li>
+        <li>Annual financial statements</li>
+        <li>Monthly and yearly reconciliations</li>
+        <li>Budgeting and cash flow support</li>
+        <li>Bargaining Council submissions</li>
+      </ul>
+    </div>
+
+    <!-- Payroll -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3 class="service-title">Payroll Services</h3>
+      <ul class="service-list">
+        <li>Monthly payroll processing</li>
+        <li>EMP201 / EMP501 submissions</li>
+        <li>Workman's Compensation</li>
+        <li>UIF, PAYE, and SDL compliance</li>
+        <li>Payslip generation</li>
+        <li>Employee onboarding &amp; statutory deductions</li>
+      </ul>
+    </div>
+
+    <!-- Taxation -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 14l6-6M9 9h.01M15 15h.01"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+      </div>
+      <h3 class="service-title">Taxation</h3>
+      <ul class="service-list">
+        <li>Tax registrations (Income, VAT, PAYE, SDL, etc.)</li>
+        <li>Individual &amp; company income tax returns</li>
+        <li>Provisional tax calculations</li>
+        <li>Tax clearance certificates &amp; directives</li>
+        <li>SARS dispute resolution &amp; appeals</li>
+        <li>Amending SARS registered details</li>
+      </ul>
+    </div>
+
+    <!-- Company Secretarial -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z"/><path d="M14 2v6h6M10 13h4M10 17h2"/></svg>
+      </div>
+      <h3 class="service-title">Company Secretarial</h3>
+      <ul class="service-list">
+        <li>Company &amp; NPO/NGO registrations</li>
+        <li>CSD &amp; CIDB registration</li>
+        <li>COIDA registration</li>
+        <li>BEE affidavit &amp; beneficial ownership</li>
+        <li>Annual returns &amp; statutory records</li>
+        <li>Tender application and compliance</li>
+      </ul>
+    </div>
+
+    <!-- Advisory -->
+    <div class="service-card">
+      <div class="service-icon">
+        <svg fill="none" stroke="#c9a84c" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3 class="service-title">Business Consulting &amp; Advisory</h3>
+      <ul class="service-list">
+        <li>Business growth strategies</li>
+        <li>Financial analysis &amp; forecasting</li>
+        <li>Start-up guidance &amp; structuring</li>
+        <li>Internal controls &amp; risk assessments</li>
+        <li>Compliance advice</li>
+        <li>Restructuring support</li>
+      </ul>
+    </div>
+
+    <!-- Approach -->
+    <div class="service-card" style="background:var(--navy);">
+      <div style="padding-top:8px;">
+        <div style="font-size:11px;letter-spacing:.2em;font-weight:600;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Our Approach</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:20px;">
+          "Personalized solutions that bring life, structure &amp; sustainability."
+        </p>
+        <p style="font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:28px;">
+          We combine expert knowledge, modern tools, and ethical practices to help clients achieve clarity, compliance, and growth.
+        </p>
+        <a href="#contact" class="btn-primary">Start Today</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div style="position:relative;z-index:2;">
+    <div class="section-tag">Why Avah Holdings</div>
+    <h2 class="section-title white">The Avah Difference</h2>
+
+    <div class="why-grid">
+      <ul class="why-list">
+        <li class="why-item">
+          <div class="why-num">01</div>
+          <div class="why-item-text">
+            <h4>100% Black Female-Owned</h4>
+            <p>Proudly committed to economic empowerment and transformation in South Africa.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">02</div>
+          <div class="why-item-text">
+            <h4>Accurate &amp; Reliable</h4>
+            <p>Precision-driven financial services you can depend on for every decision.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">03</div>
+          <div class="why-item-text">
+            <h4>Strong Compliance Focus</h4>
+            <p>We navigate SARS and regulatory requirements so you don't have to.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">04</div>
+          <div class="why-item-text">
+            <h4>Customised Solutions</h4>
+            <p>No cookie-cutter packages — every engagement is tailored to your business.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">05</div>
+          <div class="why-item-text">
+            <h4>Transparent Communication</h4>
+            <p>Full visibility into our processes, decisions, and outcomes at every stage.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <div class="why-num">06</div>
+          <div class="why-item-text">
+            <h4>Strategic Long-Term Support</h4>
+            <p>We grow with your business — from start-up guidance to financial restructuring.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="why-cta-box">
+        <h3>Ready to bring structure to your business?</h3>
+        <p>Whether you're a start-up finding your footing or an established business needing expert financial oversight, Avah Holdings is the partner you can trust.</p>
+        <a href="#contact" class="btn-primary">Book a Free Consultation</a>
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid rgba(201,168,76,0.2);">
+          <div style="font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:8px;">Managing Director</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#fff;">Nelisiwe Ntshikose BA(SA)</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:2px;">Registered Accounting &amp; Tax Professional</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">Get In Touch</div>
+  <h2 class="section-title">Let's Talk About<br/>Your Business</h2>
+
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="#c9a84c" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Phone</div>
+          <div class="contact-info-value"><a href="tel:+27678838957">+27 67 883 8957</a></div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="#c9a84c" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-value"><a href="mailto:info@avahholdings.co.za">info@avahholdings.co.za</a></div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-icon">
+          <svg fill="none" stroke="#c9a84c" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-info-label">Location</div>
+          <div class="contact-info-value">South Africa</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:24px;background:var(--navy);border-radius:2px;">
+        <div style="font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;">Banking Details</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:2;">
+          <strong style="color:#fff;">AVAH HOLDINGS (PTY) LTD</strong><br/>
+          Nedbank · Current Account<br/>
+          Account: 1308160631<br/>
+          Branch Code: 198765
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Jane" required />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Doe" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@company.co.za" required />
+      </div>
+      <div class="form-group">
+        <label>Service of Interest</label>
+        <select>
+          <option value="">Select a service…</option>
+          <option>Accounting &amp; Bookkeeping</option>
+          <option>Payroll Services</option>
+          <option>Taxation</option>
+          <option>Company Secretarial</option>
+          <option>Business Consulting &amp; Advisory</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us briefly about your business and what you need…"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-size:13px;">Send Enquiry</button>
+      <div id="form-success" style="display:none;font-size:13px;color:green;padding:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:2px;">
+        ✓ Thank you! We'll be in touch shortly.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>AVAH HOLDINGS (PTY) LTD</h2>
+      <p>Accounting · Tax · Advisory · Payroll · Consulting</p>
+    </div>
+    <div class="footer-services">
+      <h4>Services</h4>
+      <ul>
+        <li>Accounting &amp; Bookkeeping</li>
+        <li>Payroll Services</li>
+        <li>Taxation</li>
+        <li>Company Secretarial</li>
+        <li>Business Consulting</li>
+      </ul>
+    </div>
+    <div class="footer-services">
+      <h4>Contact</h4>
+      <ul>
+        <li>+27 67 883 8957</li>
+        <li>info@avahholdings.co.za</li>
+        <li style="margin-top:8px;"><span class="footer-bbbee">100% Black Female Owned</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Avah Holdings (Pty) Ltd. All rights reserved. Reg. No. South Africa.</p>
+    <p style="font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,0.25);">ACCOUNTING · TAX · ADVISORY</p>
+  </div>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 5000);
+  }
+
+  // Subtle scroll fade-in for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section:not(#hero) .value-card, .service-card, .why-item, .contact-info-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
